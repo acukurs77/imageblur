@@ -1,0 +1,14 @@
+Notes
+
+
+ones.each do |row_of_one, column_of_one|
+a = [“charmander”, “bulbasur”, “pikatchu”]
+a[1] = “ivisor”
+a = [“charmander”, “ivisor”, “pikatchu”]
+a[1-1] = “ivisor”
+a[1+1] = “ivisor”
+a[1-1] = “ivisor” unless row_number == 0
+
+a[1-1] = “ivisor” unless row_number == 0
+@list_of_numbers[row_number -1][col_index] = 1 unless row_number == 0 #up
+
