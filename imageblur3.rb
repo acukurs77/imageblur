@@ -12,22 +12,28 @@ class Image
     end
   end 
 
-  def new_image
+  def distance_check(row_number, row_of_one, col_index, column_of_one, n)
+	if (row_number - row_of_one).abs + (col_index - column_of_one).abs <= n
+		true
+	else
+		false
+	end
+  end
+
+
+  def new_image(n)
   	ones = coordinates_of_ones
   	@list_of_numbers.each_with_index do |x, row_number|
   	   x.each_with_index do |col, col_index|	
 	       ones.each do |row_of_one, column_of_one|
-	      	 if row_number == row_of_one && col_index == column_of_one
-			       @list_of_numbers[row_number - 1][col_index] = 1 unless row_number == 0
-             @list_of_numbers[row_number][col_index - 1] = 1 unless col_index == 0
-             @list_of_numbers[row_number][col_index + 1] = 1 unless col_index >= 3
-             @list_of_numbers[row_number + 1][col_index] = 1 unless row_number >= 3
-	      	 end
+	      	 if distance_check(row_number, row_of_one, col_index, column_of_one, n) == true
+	      	 	@list_of_numbers[row_number][col_index] = 1
+	         end
 	       end
-	     end
-  	end
-  	
+	   end
+	end
   end
+  	
 
   def coordinates_of_ones
   	all_coordinates = []
@@ -48,30 +54,21 @@ end
 
 
 
-
-
-
-#coordinates = [[1,1],[2,3]]
-
 image = Image.new([
-  [0, 0, 0, 0],
-  [0, 1, 0, 0],
-  [0, 0, 0, 1],
-  [0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 1, 0],
+[0, 0, 0, 0, 0, 0],
+[0, 1, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 1]
 ])
 
-image.new_image
+
+image.new_image(3)
 image.output_image
 
 
-# 0100
-# 1111
-# 0111
-# 0001
 
 
 
-# 0000
-# 0100
-# 0001
-# 0000
